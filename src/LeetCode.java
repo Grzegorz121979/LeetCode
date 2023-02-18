@@ -4,7 +4,7 @@ import java.util.List;
 public class LeetCode {
     public static void main(String[] args) {
 
-        int[] num = {3, 2, 3};
+        int[] num = {3, 3};
         int target = 6;
 
         for (int i : twoSum(num, target)) {
@@ -15,11 +15,8 @@ public class LeetCode {
     private static int[] twoSum(int[] num, int target) {
         List<Integer> index = new LinkedList<>();
         if ((num[0] + num[num.length - 1]) == target) {
-            for (int i = 0; i < num.length; i++) {
-                index.add(i);
-                index.add(num.length - 1);
-                break;
-            }
+            index.add(0);
+            index.add(num.length - 1);
         } else {
             for (int i = 0; i < num.length; i++) {
                 for (int j = i + 1; j < num.length; j++) {
