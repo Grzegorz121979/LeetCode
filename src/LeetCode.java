@@ -1,34 +1,40 @@
-import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.List;
 
 public class LeetCode {
-        public static Scanner keyboard = new Scanner(System.in);
-
     public static void main(String[] args) {
 
-        System.out.print("Enter C for Celsius or F for Fahrenheit: ");
-        String degree = keyboard.next().toUpperCase();
+        int[] num = {3, 2, 3};
+        int target = 6;
 
-        switch (degree) {
-            case "C":
-                System.out.print("Celsius: ");
-                double result_cel = celsius_to_fahrenheit(keyboard.nextDouble());
-                System.out.println("Fahrenheit: " + Math.round(result_cel));
-                break;
-            case "F":
-                System.out.print("Fahrenheit: ");
-                double result_fah = fahrenheit_to_celsius(keyboard.nextDouble());
-                System.out.println("Celsius: " + Math.round(result_fah));
-                break;
+        for (int i : twoSum(num, target)) {
+            System.out.print(i + " ");
         }
 
     }
-
-    static double celsius_to_fahrenheit(double celsius) {
-        return 1.8 * celsius + 32;
-    }
-
-    static double fahrenheit_to_celsius(double fahrenheit) {
-        return (fahrenheit - 32) * 0.5556;
+    private static int[] twoSum(int[] num, int target) {
+        List<Integer> index = new LinkedList<>();
+        if ((num[0] + num[num.length - 1]) == target) {
+            for (int i = 0; i < num.length; i++) {
+                index.add(i);
+                index.add(num.length - 1);
+                break;
+            }
+        } else {
+            for (int i = 0; i < num.length; i++) {
+                for (int j = i + 1; j < num.length; j++) {
+                    if (num[i] + num[j] == target) {
+                        index.add(i);
+                        index.add(j);
+                    }
+                }
+            }
+        }
+        int[] indexNum = new int[index.size()];
+        for (int n = 0; n < index.size(); n++) {
+            indexNum[n] = index.get(n);
+        }
+        return indexNum;
     }
 }
 
