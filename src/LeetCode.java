@@ -8,20 +8,11 @@ public class LeetCode {
         int[] num = {2, 7, 11, 15};
         int target = 9;
 
-        Map<Integer, Integer> index = new HashMap<>();
-        int[] indexes = new int[num.length];
-        for (int i = 0; i < num.length; i++) {
-            index.put(num[i], i);
-        }
-
-
-        System.out.println(index);
-
         for (int i : twoSum(num, target)) {
             System.out.print(i + " ");
         }
     }
-    private static int[] twoSum(int[] num, int target) {
+    /*private static int[] twoSum(int[] num, int target) {
             for (int i = 0; i < num.length; i++) {
                 for (int j = i + 1; j < num.length; j++) {
                     if (num[i] + num[j] == target) {
@@ -31,6 +22,18 @@ public class LeetCode {
             }
 
         return num;
+    }*/
+
+    private static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> indexes = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            Integer index = indexes.get(nums[i]);
+            if (index != null) {
+                return new int[] {i, index};
+            }
+            indexes.put(target - nums[i], i);
+        }
+        return nums;
     }
 }
 
