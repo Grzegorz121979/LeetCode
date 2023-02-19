@@ -1,37 +1,36 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LeetCode {
     public static void main(String[] args) {
 
-        int[] num = {3, 3};
-        int target = 6;
+        int[] num = {2, 7, 11, 15};
+        int target = 9;
+
+        Map<Integer, Integer> index = new HashMap<>();
+        int[] indexes = new int[num.length];
+        for (int i = 0; i < num.length; i++) {
+            index.put(num[i], i);
+        }
+
+
+        System.out.println(index);
 
         for (int i : twoSum(num, target)) {
             System.out.print(i + " ");
         }
-
     }
     private static int[] twoSum(int[] num, int target) {
-        List<Integer> index = new LinkedList<>();
-        if ((num[0] + num[num.length - 1]) == target) {
-            index.add(0);
-            index.add(num.length - 1);
-        } else {
             for (int i = 0; i < num.length; i++) {
                 for (int j = i + 1; j < num.length; j++) {
                     if (num[i] + num[j] == target) {
-                        index.add(i);
-                        index.add(j);
+                        return new int[] {i, j};
                     }
                 }
             }
-        }
-        int[] indexNum = new int[index.size()];
-        for (int n = 0; n < index.size(); n++) {
-            indexNum[n] = index.get(n);
-        }
-        return indexNum;
+
+        return num;
     }
 }
 
